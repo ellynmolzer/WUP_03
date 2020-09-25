@@ -17,8 +17,8 @@ davisdata <- read.csv(file="UCDavis.csv")
 ## Our Goal is to answer this question Is there a difference between the alcohol consumed between the row
 ## you choose to sit in??
 
-$H_0$: There is no difference among the mean amounts of alcohol consumed per week by row.   
-$H_A$: There is a difference among the mean amount of alcohol consumer per week by row.    
+$H_0$: There is no difference among the mean amounts of alcohol consumed per week by row.     
+$H_A$: There is a difference among the mean amount of alcohol consumer per week by row.      
 
 ## Now with ggplot - first select the basic data
 
@@ -48,7 +48,15 @@ basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='e
 favstats(alcohol~Seat,data=davisdata)
 ```
 ## Inferential Tests
+```{r}
+model1 <- aov(alcohol~Seat,data=davisdata)
+summary.aov(model1)
+```
+The P value is 0.000116 < 0.05 so we reject the null hypothesis 
+```{r}
+plot(TukeyHSD(model1))
+```
 
 ## Conclusions
-
+There is a difference between alcohol consumption and seating for front-back, there is a difference between alcohol consumption and seating for middle-back, there is no difference between alcohol consumption and seating for middle-front. 
 
