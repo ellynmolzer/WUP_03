@@ -1,7 +1,7 @@
 ---
 title: "Alcohol vs Seat choice"
-author: "Your Name"
-date: "Fall 2020"
+author: "Ellyn Molzer"
+date: "September 2020"
 output: html_document
 ---
 
@@ -17,7 +17,14 @@ davisdata <- read.csv(file="UCDavis.csv")
 ## Our Goal is to answer this question Is there a difference between the alcohol consumed between the row
 ## you choose to sit in??
 
+$H_0$: There is no difference among the mean amounts of alcohol consumed per week by row.   
+$H_A$: There is a difference among the mean amount of alcohol consumer per week by row.    
+
 ## Now with ggplot - first select the basic data
+
+```{r}
+```
+
 
 ```{r}
 basicCN <- ggplot(davisdata,aes(y=alcohol,x=Seat))
@@ -35,8 +42,11 @@ basicCN + geom_boxplot()
 basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='errorbar') + labs(title="Fancy notch boxplot \n with 2 lines")
 ```
 
-## Numerical Summarys 
 
+## Numerical Summarys 
+```{r}
+favstats(alcohol~Seat,data=davisdata)
+```
 ## Inferential Tests
 
 ## Conclusions
